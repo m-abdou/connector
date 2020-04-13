@@ -1,9 +1,9 @@
 const _ = require("lodash");
 const Repository = require("../Model/Repository");
 const MessageSchemaBuilder = require("../Model/SchemaBuilder/Message");
-let config = require("../config");
+let {collection} = require("../config");
 
-const repository = new Repository(config.collection.message);
+const repository = new Repository(collection.message);
 
 class Message {
 

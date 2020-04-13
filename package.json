@@ -9,7 +9,7 @@
   },
   "main": "./index.js",
   "scripts": {
-    "start": "nodemon ./index.js",
+    "server": "nodemon ./index.js",
     "test": "NODE_ENV=test DEBUG=app jest --detectOpenHandles --coverage=false; exit0",
     "lint": "./node_modules/.bin/eslint  --ignore-pattern 'src/__test__/*' --fix src/*; exit0",
     "docker": "docker-compose build && docker-compose run --service-ports node"

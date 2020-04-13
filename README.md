@@ -16,7 +16,7 @@
         * run : npm run docker  
     
      now we need start our server  
-      - run : npm run start
+      - run : npm run server
       
      you can access this server by using this url 
       - http://localhost:2020/

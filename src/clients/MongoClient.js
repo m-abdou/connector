@@ -1,5 +1,5 @@
 const mongo =  require('mongodb');
-let config = require("../config");
+let {mongodb} = require("../config");
 
 const Client = mongo.MongoClient;
 let options = {
@@ -9,9 +9,8 @@ let options = {
 
 class MongoClient {
   static getCollection(collectionName) {
-      console.log(collectionName);
-    return Client.connect(config.mongodb.url, options)
-      .then(client => client.db(config.mongodb.name).collection(collectionName));
+    return Client.connect(mongodb.url, options)
+      .then(client => client.db(mongodb.name).collection(collectionName));
   }
 }
 

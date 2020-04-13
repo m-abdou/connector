@@ -6,7 +6,7 @@ class Message {
       return {
           room: object.room,
           sender: object.user,
-          sender_id: object.id,
+          sender_id: object.sender_id,
           message: object.message,
           createdAt: moment().format('Y-MM-DD H:SS')
       };
