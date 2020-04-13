@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO multiroom chat</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect();
+
+      var addMessage = function(msg) {
+
+        $('#messages').append('"<span style="color: black">"' + msg + '"<span>"');
+
+      };
+
+      $(document).ready(function() {
+
+          var channel = "";
+
+        $('#join').click(function() {
+            channel = $('#channel').val();
+            socket.emit('subscribe', channel, function() {
+                addMessage('joined: ' + channel);
+            });
+        });
+
+        $('#send').click(function() {
+          var msg = $('#message').val();
+          var message = {
+              room: channel,
+              user: 'mohamed',
+              message: msg,
+              sender_id: 5
+          }
+
+              socket.emit('send', message, function() {
+          });
+
+        });
+
+        socket.on('message', function(msg) {
+            console.log(msg);
+            addMessage(msg.message);
+        });
+
+        socket.on('error', function(err) {
+          addMessage('error: ' + err);
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <input id="channel" type="text"><button id="join">Join</button>
+    <div id="messages"></div>
+    <input id="message" type="text"><button id="send">Send</button>
+  </body>
+</html>
